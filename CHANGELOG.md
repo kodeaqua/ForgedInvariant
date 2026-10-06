@@ -29,7 +29,7 @@
 - On Intel, always reset TSC_ADJUST if available.
 - Code cleanup.
 - Store capabilities using bitfield.
-- New boot args: `-FITSCPeriodic` to force periodic sync, `-FIOff`, `-FIBeta`.
+- New boot args: `-FIPeriodic` to force periodic sync, `-FIOff`, `-FIBeta`.
 
 ### Bug Fixes
 
