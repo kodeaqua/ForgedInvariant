@@ -202,7 +202,7 @@ void TSCForger::init()
 
         if (CPUInfo::getCpuid(1, 0, nullptr, &ebx, &ecx, &edx)) {
             const UInt64 features = (static_cast<UInt64>(ecx) << 32) | edx;
-            // If the HTT feature is supported then ebc will contain the
+            // If the HTT feature is supported then ebx will contain the
             // maximum APIC ID that's usable at 16..23
             if (features & CPUID_FEATURE_HTT) { this->threadCount = (ebx >> 16) & 0xFF; }
             else {
