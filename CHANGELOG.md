@@ -7,7 +7,7 @@
 - Attach the periodic sync timer to a work loop, so periodic sync actually fires on CPUs without TSC_ADJUST or LockTscToCurrentP0.
 - Fail gracefully if the work loop or timer cannot be created.
 
-**Full Changelog**: https://github.com/ChefKissInc/ForgedInvariant/compare/v1.5.0...v1.5.1
+**Full Changelog**: https://github.com/kodeaqua/ForgedInvariant/compare/1ef3491...v1.5.1
 
 ## v1.5.0 (21/11/2025)
 
