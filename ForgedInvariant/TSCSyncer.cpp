@@ -226,8 +226,18 @@ void TSCForger::init()
     if (checkKernelArgument("-FIPeriodic") || (!this->caps.tscAdjust && !this->caps.amd17h)) {
         DBGLOG("TSCSyncer", "Will have to sync periodically.");
 
+        // Timer event sources only fire once attached to a work loop.
+        this->workLoop = IOWorkLoop::workLoop();
         // timerEventSource fails if inOwner is nullptr so just give it some random OSObject.
         this->timer = IOTimerEventSource::timerEventSource(kOSBooleanTrue, timerAction);
+        if (this->workLoop == nullptr || this->timer == nullptr ||
+            this->workLoop->addEventSource(this->timer) != kIOReturnSuccess)
+        {
+            SYSLOG("TSCSyncer", "Failed to set up the periodic sync timer!");
+            OSSafeReleaseNULL(this->timer);
+            OSSafeReleaseNULL(this->workLoop);
+            return;
+        }
         this->startTimer();
     }
 }

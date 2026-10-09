@@ -4,6 +4,7 @@
 #pragma once
 #include <Headers/kern_patcher.hpp>
 #include <IOKit/IOTimerEventSource.h>
+#include <IOKit/IOWorkLoop.h>
 
 class TSCForger
 {
@@ -28,6 +29,7 @@ class TSCForger
     mach_vm_address_t   orgXcpmUrgency{0};
     mach_vm_address_t   orgTracePoint{0};
     mach_vm_address_t   orgClockGetCalendarMicrotime{0};
+    IOWorkLoop*         workLoop{nullptr};
     IOTimerEventSource* timer{nullptr};
 
     static void resetAdjust(void*);
